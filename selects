@@ -1,0 +1,116 @@
+create database delegacia;															
+
+use delegacia;
+
+
+create table detetive(
+idDetetive int primary key auto_increment,
+nome varchar(50),
+fkAssistente int,
+fkUnidade int,
+constraint detetiveFkUnidade foreign key(fkUnidade) references unidade(idUnidade)
+);
+
+
+create table vitima(
+idVitima int primary key auto_increment,
+nome varchar(50),
+dataNasc date,
+genero varchar(10),
+causaMorte varchar(50),
+cep char(9),
+numeroCasa int,
+celular char(11),
+telefone char(8)
+) auto_increment= 10;
+ 
+ -- associativa --
+ create table crime(
+idCrime int auto_increment,
+fkDetetive int,
+fkVitima int,
+localizacao varchar(50),
+zona char(10),
+dtData date,
+tipoCrime varchar(50),
+armaCrime varchar(50),
+constraint fkdetetive foreign key(fkDetetive) references detetive(idDetetive),
+constraint fkvitima foreign key(fkVitima) references vitima(idVitima),
+constraint pktripla primary key (idCrime, fkDetetive, fkVitima)
+) auto_increment =100;
+
+create table suspeito(
+idSuspeito int primary key auto_increment,
+nome varchar(50),
+dataNasc date,
+antecedenteCriminal varchar(60)
+)auto_increment=1000;
+
+create table unidade(
+idUnidade int primary key auto_increment,
+zona char(10)
+)auto_increment=500; 
+
+SELECT * FROM UNIDADE;
+
+insert into detetive values
+(null,'Barbara Stain',null, 500),
+(null,'Lupin',1, 501),
+(null,'Cherlock Holmes',null, 502),
+(null,'Adrian Monk',null, 503),
+(null,'Irina Yakov',null, 504),
+(null,'Pamela Trento',3, 505),
+(null,'Fox Murder',5, 506),
+(null,'Anna Jensen',null, 507),
+(null,'Dmitri Morozov',7, 508),
+(null,'Anna Sommerhalder',3, 509);
+
+
+
+insert into vitima values
+(null, 'Daniel Zapatta', '2000-02-01', 'Homem', 'Asfixia', '00000-001', 13, '94002-8922', null),
+(null, 'Diego Hessel', '1999-10-01', 'Homem', 'Facada', '00000-002', 34, '94002-0000', null),
+(null, 'Michael Dulevok', '2002-02-01', 'Homem', 'Envenenamento', '00000-003', 55, '94002-8900', null),
+(null, 'Davi Maciel', '2003-02-01', 'Homem', 'Eletrocutado', '00000-004', 666, '94002-8922', null),
+(null, 'Carol STryce', '2000-03-22', 'Mulher', 'Afogamento', '00000-022', 668, '94002-8', null),
+(null, 'Dua Lipa', '2001-10-23', 'Mulher', 'Tiro', '00000-444', 285, '8148-8922', null),
+(null, 'Tiro Lipa', '1890-10-03', 'Homem', 'Tijolada', '00000-444', 285, '1248-8922', null),
+(null, 'Bart Roll', '1992-10-11', 'Mulher', 'Choque', '22000-434',2,'1248-4522', null),
+(null, 'Alina Spark', '2001-10-24', 'Homem', 'Facada', '09050-414', 25, '3848-8922', null),
+(null, 'Luana Piot', '1999-10-31', 'Homem', 'Acidente', '12300-424', 85, '4442-8922', null),
+(null, 'Lukas Yanov', '2010-10-12', 'Mulher', 'Tiro', '98700-444', 38, '2133-8922', null);
+
+
+insert into unidade values
+(null, 'Sul'),
+(null, 'Leste'),
+(null, 'ABC'),
+(null, 'Oeste'),
+(null, 'Norte'),
+(null, 'Sul'),
+(null, 'Norte'),
+(null, 'ABC'),
+(null, 'Leste'),
+(null, 'SUl');
+
+insert into suspeito values
+(null, 'Guilherme Nascimento', '1998-03-20', 'homicidio'),
+(null, 'Jusef Queiroz', '1992-05-20',null),
+(null, 'Pablo Fulentino', '2000-03-20',null),
+(null, 'Kauã de Queiroz', '1994-03-20','assassinato'),
+(null, 'Vivian Calloy', '1980-12-20','roubo'),
+(null, 'Felipe Paul', '1999-03-20','extorsão'),
+(null, 'Jean Telles', '1994-03-20','roubo'),
+(null, 'Poliana Michelini', '1992-03-20',',assassinato');
+
+
+insert into crime values
+(null,1,10,'São paulo','Sul','2023-12-24','atropelamento','carro'),
+(null,2,11,'São paulo','Sul','2023-05-21','atropelamento','carro'),
+(null,3,12,'São paulo','norte','2023-02-17','facada','faca'),
+(null,4,13,'São paulo','norte','2023-12-21','tiro','pistola'),
+(null,5,14,'São paulo','leste','2023-09-01','punhalada','mão'),
+(null,6,15,'São paulo','Sul','2023-05-23','tiro','snaiper'),
+(null,7,16,'São paulo','leste','2023-02-28','tiro','pistola'),
+(null,8,17,'São paulo','leste','2023-04-17','espacado','mão'),
+(null,9,18,'São paulo','Sul','2023-05-13','tiro','snaiper');
