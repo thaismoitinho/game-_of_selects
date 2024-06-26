@@ -36,10 +36,6 @@ O objetivo deste projeto foi criar uma estrutura de banco de dados que suportass
 
 Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests com melhorias, correções ou sugestões para a estrutura do banco de dados.
 
-## Licença
-
-Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
-
 ---
 
 <div align="center">
